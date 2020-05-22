@@ -1,19 +1,21 @@
+#include <unistd.h>
+
 #include "Coord.hpp"
 #include "Board.hpp"
+#include "Snake.hpp"
 
 int main()
 {
     Board board;
+	Coord startPosition(board.WIDTH / 2, board.HEIGHT / 2);
+	Snake snake = Snake(startPosition);
 
-    board.initalaizeBoard();
-    board.printBoard();
+	while(true)
+	{
 
-    typedef std::deque<Coord> Snake;
-    SnakeBody snake;
-    snake.push_back(Coord(5,6));
-    snake.push_back(Coord(5,7));
-    snake.push_back(Coord(5,8));
-
-    board.putSnake(snake);
-    board.printBoard();
+		board.initalaizeBoard();
+		board.putSnake(snake.getBody());
+		board.printBoard();
+		usleep(500000);
+	}
 }
