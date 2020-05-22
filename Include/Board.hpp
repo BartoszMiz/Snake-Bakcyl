@@ -14,10 +14,10 @@ public:
 
 	typedef std::array<std::array<char , WIDTH>, HEIGHT> GameBoardArray;
 
-	void printBoard();
+	void printBoard() const;
 	void putSnake(SnakeBody snake);
 	void initalaizeBoard();
-	
+	bool isEmpty(Coord where) const;
 private:
 	void makeFrame();
 	void setCell(Coord where, char what);

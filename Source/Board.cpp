@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-void Board::printBoard()
+void Board::printBoard() const
 {
 	std::cout << "\033c";
 
@@ -53,4 +53,9 @@ void Board::makeFrame()
 void Board::setCell(Coord where, char what)
 {
 	board[where.y][where.x] = what;
+}
+
+bool Board::isEmpty(Coord where) const
+{
+	return board[where.y][where.x] == ' ';
 }
