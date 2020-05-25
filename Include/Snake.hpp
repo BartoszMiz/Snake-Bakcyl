@@ -10,10 +10,10 @@ class Snake
 private:
 	SnakeBody _body;
 	unsigned _length;
-	Board _board;
+	Board& _board;
 public:
 	bool isAlive;
 	Snake(Coord startPosition, Board& board);
 	SnakeBody getBody() const;
-	void Move(char input);
+	void move(char input);
 };

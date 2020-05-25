@@ -6,20 +6,25 @@
 int main()
 {
     Board board;
+	board.initializeBoard();
 	Coord startPosition(board.WIDTH / 2, board.HEIGHT / 2);
 	Snake snake = Snake(startPosition, board);
 
 	while(snake.isAlive)
 	{
-		board.initalaizeBoard();
 		board.putSnake(snake.getBody());
 		board.printBoard();
 		
-		char input = 'w';
-		//std::cin >> input;
-		snake.Move(input);
+		char input;
+		std::cin >> input;
+		input = std::tolower(input);
+		if(input == 'e')
+		{
+			std::cout << "\033c";
+			return 0;
+		}
 
-		usleep(500000);
+		snake.move(input);
 	}
 
 	std::cout << "\033c";

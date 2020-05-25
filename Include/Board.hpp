@@ -16,8 +16,9 @@ public:
 
 	void printBoard() const;
 	void putSnake(SnakeBody snake);
-	void initalaizeBoard();
+	void initializeBoard();
 	bool isEmpty(Coord where) const;
+	char getCell(Coord where) const;
 private:
 	void makeFrame();
 	void setCell(Coord where, char what);

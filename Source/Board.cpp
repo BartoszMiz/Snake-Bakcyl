@@ -16,14 +16,25 @@ void Board::printBoard() const
 
 void Board::putSnake(SnakeBody snake)
 {
+	for(int y=0; y< HEIGHT ; y++)
+	{
+		for(int x=0; x< WIDTH ; x++)
+		{
+			if(getCell(Coord(x,y)) == 'o' || getCell(Coord(x,y)) == '@')
+			{
+				setCell(Coord(x,y), ' ');
+			}
+		}
+	}
+
 	for(auto bodypart : snake)
 	{
-		setCell(bodypart, '0');
+		setCell(bodypart, 'o');
 	}
 	setCell(snake.front(), '@');
 }
 
-void Board::initalaizeBoard()
+void Board::initializeBoard()
 {
 	for(int y=0; y< HEIGHT ; y++)
 	{
@@ -53,6 +64,11 @@ void Board::makeFrame()
 void Board::setCell(Coord where, char what)
 {
 	board[where.y][where.x] = what;
+}
+
+char Board::getCell(Coord where) const
+{
+	return board[where.y][where.x];
 }
 
 bool Board::isEmpty(Coord where) const

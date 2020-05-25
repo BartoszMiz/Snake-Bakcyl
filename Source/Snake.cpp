@@ -12,17 +12,17 @@ SnakeBody Snake::getBody() const
 	return _body;
 }
 
-void Snake::Move(char input)
+void Snake::move(char input)
 {
 	Coord newPosition = _body.front();
 	input = std::tolower(input);
 	switch(input)
 	{
 	case 'w':
-		newPosition.y++;
+		newPosition.y--;
 		break;
 	case 's':
-		newPosition.y--;
+		newPosition.y++;
 		break;
 	case 'a':
 		newPosition.x--;
@@ -34,7 +34,8 @@ void Snake::Move(char input)
 		break;
 	}
 
-	if(!_board.isEmpty(newPosition))
+	char checkedCell = _board.getCell(newPosition);
+	if(checkedCell == 'o' || checkedCell == '#')
 	{
 		isAlive = false;
 		return;
