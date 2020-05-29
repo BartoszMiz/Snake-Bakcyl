@@ -31,7 +31,7 @@ void Snake::move(char input)
 		newPosition.x++;
 		break;
 	default:
-		break;
+		return;
 	}
 
 	if(!_board.isWalkable(newPosition))

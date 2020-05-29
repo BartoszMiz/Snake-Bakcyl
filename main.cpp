@@ -17,6 +17,7 @@ int main()
 		
 		char input;
 		std::cin >> input;
+
 		input = std::tolower(input);
 		if(input == 'e')
 		{
