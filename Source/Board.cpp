@@ -1,4 +1,6 @@
 #include "Board.hpp"
+#include <random>
+#include <time.h>
 
 void Board::printBoard() const
 {
@@ -44,6 +46,8 @@ void Board::initializeBoard()
 		}
 	}
 	makeFrame();
+	srand(time(NULL));
+	putApple();
 }
 
 void Board::makeFrame()
@@ -61,6 +65,16 @@ void Board::makeFrame()
 	}
 }
 
+void Board::putApple()
+{
+	Coord applePosition = Coord(random() % WIDTH, random() % HEIGHT);
+	while(!isEmpty(applePosition))
+	{
+		applePosition = Coord(random() % WIDTH, random() % HEIGHT);
+	}
+	setCell(applePosition, 'Q');
+}
+
 void Board::setCell(Coord where, char what)
 {
 	board[where.y][where.x] = what;
@@ -74,4 +88,9 @@ char Board::getCell(Coord where) const
 bool Board::isEmpty(Coord where) const
 {
 	return board[where.y][where.x] == ' ';
+}
+
+bool Board::isWalkable(Coord where) const
+{
+	return isEmpty(where) || board[where.y][where.x] == 'Q';
 }

@@ -34,12 +34,18 @@ void Snake::move(char input)
 		break;
 	}
 
-	char checkedCell = _board.getCell(newPosition);
-	if(checkedCell == 'o' || checkedCell == '#')
+	if(!_board.isWalkable(newPosition))
 	{
 		isAlive = false;
 		return;
 	}
 	_body.push_front(newPosition);
-	_body.pop_back();
+	if(_board.getCell(newPosition) != 'Q')
+	{
+		_body.pop_back();
+	}
+	else
+	{
+		_board.putApple();
+	}
 }
